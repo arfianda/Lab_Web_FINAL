@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Secured SPA Portal - VueJS & CI4</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Custom Style -->
+    <link rel="stylesheet" href="assets/css/style.css">
+    <!-- Vue.js 3 -->
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <!-- Vue Router 4 -->
+    <script src="https://unpkg.com/vue-router@4/dist/vue-router.global.js"></script>
+    <!-- Axios -->
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+</head>
+<body class="bg-gray-50 min-h-screen flex flex-col justify-between">
+    <div id="app" class="flex flex-col min-h-screen">
+        <!-- Navigation Bar -->
+        <header class="bg-white border-b border-gray-200 shadow-sm sticky top-0 z-40">
+            <div class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
+                <!-- Logo -->
+                <router-link to="/" class="flex items-center space-x-3 group">
+                    <div class="w-10 h-10 bg-gradient-to-tr from-blue-600 to-indigo-600 rounded-xl flex items-center justify-center text-white shadow-md transition-transform group-hover:scale-105">
+                        <i class="fas fa-paper-plane text-lg"></i>
+                    </div>
+                    <span class="font-extrabold text-xl bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent tracking-tight">AdminSPA</span>
+                </router-link>
+
+                <!-- Navigation Links -->
+                <nav class="flex items-center space-x-1 sm:space-x-4">
+                    <router-link to="/" class="text-gray-600 hover:text-blue-600 font-semibold px-3 py-2 rounded-lg transition-colors duration-150" active-class="text-blue-600 bg-blue-50">
+                        <i class="fas fa-home sm:mr-1"></i> <span class="hidden sm:inline">Beranda</span>
+                    </router-link>
+                    
+                    <router-link to="/artikel" class="text-gray-600 hover:text-blue-600 font-semibold px-3 py-2 rounded-lg transition-colors duration-150" active-class="text-blue-600 bg-blue-50">
+                        <i class="fas fa-newspaper sm:mr-1"></i> <span class="hidden sm:inline">Kelola Artikel</span>
+                    </router-link>
+                    
+                    <router-link to="/about" class="text-gray-600 hover:text-blue-600 font-semibold px-3 py-2 rounded-lg transition-colors duration-150" active-class="text-blue-600 bg-blue-50">
+                        <i class="fas fa-user sm:mr-1"></i> <span class="hidden sm:inline">About</span>
+                    </router-link>
+
+                    <div class="h-6 w-px bg-gray-200 mx-2"></div>
+
+                    <!-- Login/Logout Action -->
+                    <router-link v-if="!isLoggedIn" to="/login" class="bg-blue-600 hover:bg-blue-700 text-white font-bold px-4 py-2 rounded-lg shadow transition-all duration-150 hover:-translate-y-0.5">
+                        <i class="fas fa-sign-in-alt sm:mr-1"></i> Login
+                    </router-link>
+                    <a v-else href="#" @click.prevent="logout" class="bg-red-50 hover:bg-red-100 text-red-600 font-bold px-4 py-2 rounded-lg border border-red-200 transition-colors duration-150">
+                        <i class="fas fa-sign-out-alt sm:mr-1"></i> Logout
+                    </a>
+                </nav>
+            </div>
+        </header>
+
+        <!-- Main Content Area -->
+        <main class="flex-grow">
+            <router-view></router-view>
+        </main>
+
+        <!-- Footer -->
+        <footer class="bg-white border-t border-gray-200 py-6 text-center text-gray-400 text-xs font-semibold mt-auto">
+            <div class="max-w-6xl mx-auto px-6 flex flex-col sm:flex-row justify-between items-center space-y-3 sm:space-y-0">
+                <span>&copy; 2026 AdminSPA. Seluruh hak cipta dilindungi.</span>
+                <span>Universitas Pelita Bangsa &bull; Agung Nugroho</span>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Component Definitions -->
+    <script src="assets/js/components/Home.js"></script>
+    <script src="assets/js/components/About.js"></script>
+    <script src="assets/js/components/Login.js"></script>
+    <script src="assets/js/components/Artikel.js"></script>
+    <!-- App Orchestration -->
+    <script src="assets/js/app.js"></script>
+</body>
+</html>

@@ -32,6 +32,14 @@ $routes->group('ajax', function ($routes) {
     $routes->delete('delete/(:num)', 'Ajax::delete/$1');
 });
 
+// API routes
+$routes->get('post', 'Api\Post::index');
+$routes->get('post/(:segment)', 'Api\Post::show/$1');
+$routes->post('post', 'Api\Post::create', ['filter' => 'apiauth']);
+$routes->put('post/(:segment)', 'Api\Post::update/$1', ['filter' => 'apiauth']);
+$routes->delete('post/(:segment)', 'Api\Post::delete/$1', ['filter' => 'apiauth']);
+$routes->post('api/login', 'Api\Auth::login');
+
 // Admin routes
 $routes->group('admin', ['filter' => 'auth'], function ($routes) {
     $routes->get('artikel', 'Artikel::adminIndex');
